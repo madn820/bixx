@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: bixx-api
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python main.py"
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false
+
+  - type: worker
+    name: bixx-telegram
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python telegram_bot.py"
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: BACKEND_URL
+        sync: false
